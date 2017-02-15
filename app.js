@@ -17,6 +17,18 @@ app.get('/', function(req, res) {
   res.render('temp_static_pages/landingtest')
 })
 
+app.get('/about', function(req, res) {
+  res.render('temp_static_pages/about')
+})
+
+app.get('/contact', function(req, res) {
+  res.render('temp_static_pages/contact')
+})
+
+app.get('/post', function(req, res) {
+  res.render('temp_static_pages/post')
+})
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 })
