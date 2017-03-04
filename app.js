@@ -1,5 +1,9 @@
+require('./data/db.js')
+
 var express = require('express')
 var app = express()
+
+var bodyParser = require('body-parser')
 
 app.set('port', (process.env.PORT || 3000))
 
@@ -13,13 +17,14 @@ app.use('/fa', express.static(__dirname + '/node_modules/font-awesome'))
 // Express Configs
 app.set('view engine', 'ejs')
 
-// Routes
-var post_routes = require('./routes/posts')
-var user_routes = require('./routes/users')
-var comment_routes = require('./routes/comments')
+app.use(bodyParser.urlencoded({extended: true}))
 
-app.use('/api', routes)
-app.use('/got', got_routes)
+// Routes
+var post_routes = require('./routes/posts.routes')
+
+app.use('/posts', post_routes)
+
+// ---------- TEMP ROUTING ---------- //
 
 app.get('/', function(req, res) {
   res.render('temp_static_pages/landingtest')
@@ -42,6 +47,8 @@ app.get('/post', function(req, res) {
 app.get('/admin', function(req, res) {
   res.render('temp_static_pages/admin')
 })
+
+// ---------- TEMP ROUTING ---------- //
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));

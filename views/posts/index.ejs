@@ -1,0 +1,31 @@
+<% include ../partials/header %>
+
+<div class="container">
+  <header class="jumbotron">
+    <div class="container">
+      <h1>Blog Posts</h1>
+      <p>Whatevs</p>
+      <p>
+        <a class="btn btn-primary btn-large" href="/posts" method="POST">Add new post (temp)</a>
+      </p>
+    </div>
+  </header>
+
+  <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+    <% posts.forEach(function(post){ %>
+      <div class="col-md-3 col-sm-6">
+        <div class="thumbnail">
+          <img src="<%= post.main_image %>">
+          <div class="caption">
+            <h4><%= post.post_title %></h4>
+          </div>
+          <p>
+            <a class="btn btn-warning btn-sm" href="/posts/<%= post._id %>">Read more</a>
+          </p>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
+
+<% include ../partials/footer %>

@@ -1,9 +1,21 @@
 var mongoose = require('mongoose')
 
 var postSchema = new mongoose.Schema({
-  post_title: String,
-  main_image: String,
-  post_body: String,
+  post_title: {
+    type: String,
+    required: true
+  },
+
+  main_image: {
+    type: String,
+    required: true
+  },
+
+  post_body: {
+    type: String,
+    required: true
+  },
+
   author: {
     id: {
       type: mongoose.Schema.Types.ObjectId,
@@ -11,6 +23,7 @@ var postSchema = new mongoose.Schema({
     },
     username: String
   },
+
   comments: [
     {
       type: mongoose.Schema.Types.ObjectId,
