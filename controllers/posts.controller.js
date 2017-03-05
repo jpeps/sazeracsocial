@@ -17,18 +17,27 @@ module.exports = {
     console.log('post get all')
   },
 
+  postsRenderNew: function(req, res) {
+    res.render('posts/new')
+  },
+
   postsAddOne: function(req, res) {
+    console.log('poo')
     var newPost = {
       post_title: req.body.post_title,
       main_image: req.body.main_image,
       post_body: req.body.post_body,
     }
 
+    console.log('-------------------------------------------------------------')
+    console.log(newPost)
+    console.log('-------------------------------------------------------------')
+
     Post.create(newPost, function(err, post) {
       if (err) {
         console.log(err)
       } else {
-        res.redirect("/posts")
+        res.redirect('/posts')
       }
     })
 
@@ -36,7 +45,14 @@ module.exports = {
   },
 
   postsGetById: function(req, res) {
-    res.send('post get by id')
+    Post.findById(req.params.postId, function(err, found) {
+      if (err) {
+        console.log(err)
+      } else {
+        res.render('posts/show', { post: found })
+      }
+    })
+
     console.log('post get by id')
   },
 

@@ -17,7 +17,7 @@ app.use('/fa', express.static(__dirname + '/node_modules/font-awesome'))
 // Express Configs
 app.set('view engine', 'ejs')
 
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // Routes
 var post_routes = require('./routes/posts.routes')
