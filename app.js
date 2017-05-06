@@ -1,9 +1,12 @@
 require('./data/db.js')
 
-var express = require('express')
-var app = express()
-
-var bodyParser = require('body-parser')
+var express               = require('express'),
+    app                   = express(),
+    expressSession        = require('express-session'),
+    passport              = require('passport'),
+    localStrategy         = require('passport-local'),
+    passportLocalMongoose = require('passport-local-mongoose'),
+    bodyParser            = require('body-parser')
 
 app.set('port', (process.env.PORT || 3000))
 
@@ -16,13 +19,32 @@ app.use('/fa', express.static(__dirname + '/node_modules/font-awesome'))
 
 // Express Configs
 app.set('view engine', 'ejs')
-
 app.use(bodyParser.urlencoded({ extended: true }))
 
-// Routes
-var post_routes = require('./routes/posts.routes')
+// ------------- TEMP SHIT ------------- //
+var User = require('./models/user.model')
+// ------------- TEMP SHIT ------------- //
 
+//Passport Config
+app.use(expressSession(({
+  secret: 'boobookittyduck',
+  resave: false,
+  saveUninitialized: false
+})))
+app.use(passport.initialize())
+app.use(passport.session())
+passport.use(new localStrategy(User.authenticate()))
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
+// Routes
+var auth_routes = require('./routes/auth.routes')
+var post_routes = require('./routes/posts.routes')
+var user_routes = require('./routes/users.routes')
+
+app.use('/login', auth_routes)
 app.use('/posts', post_routes)
+app.use('/users', user_routes)
 
 // ---------- TEMP ROUTING ---------- //
 

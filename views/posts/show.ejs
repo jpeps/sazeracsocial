@@ -1,3 +1,5 @@
+<% include ../partials/header %>
+
 <!-- Main Content -->
 <div class="container">
   <div class="row">
@@ -7,7 +9,7 @@
           <%= post.post_title %>
         </h2>
         <h3 class="post-subtitle">
-          <%= post.main_image %>
+          <img src="<%= post.main_image %>">
         </h3>
         <h3 class="post-subtitle">
           <%= post.post_body %>
@@ -16,3 +18,5 @@
     </div>
   </div>
 </div>
+
+<% include ../partials/footer %>

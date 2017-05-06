@@ -41,6 +41,8 @@
 
 <body>
 
+<% include ../users/login %>
+
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
@@ -60,10 +62,13 @@
                         <a href="/">Home</a>
                     </li>
                     <li>
-                        <a href="/about">About</a>
+                        <a href="/posts">Articles</a>
                     </li>
                     <li>
-                        <a href="/post">Sample Post</a>
+                        <a href="#" data-toggle="modal" data-target="#userLoginModal">Login</a>
+                    </li>
+                    <li>
+                        <a href="/about">About</a>
                     </li>
                     <li>
                         <a href="/contact">Contact</a>
