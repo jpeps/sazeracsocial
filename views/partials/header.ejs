@@ -41,7 +41,8 @@
 
 <body>
 
-<% include ../users/login %>
+<% include ../users/register-modal %>
+<% include ../users/login-modal %>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
@@ -65,7 +66,8 @@
                         <a href="/posts">Articles</a>
                     </li>
                     <li>
-                        <a href="#" data-toggle="modal" data-target="#userLoginModal">Login</a>
+                        <a href="#" data-toggle="modal" data-target="#userLoginModal">Login</a>/
+                        <a href="#" data-toggle="modal" data-target="#userRegisterModal">Register</a>
                     </li>
                     <li>
                         <a href="/about">About</a>
