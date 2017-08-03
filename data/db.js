@@ -1,6 +1,8 @@
 var mongoose = require('mongoose')
 var dbUrl = 'mongodb://localhost/sazeracsocial'
 
+mongoose.Promise = Promise
+
 mongoose.connect(dbUrl)
 
 mongoose.connection.on('connected', function() {

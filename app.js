@@ -27,9 +27,9 @@ var User = require('./models/user.model')
 
 //Passport Config
 app.use(expressSession(({
-  secret: 'boobookittyduck',
-  resave: false,
-  saveUninitialized: false
+    secret: 'boobookittyduck',
+    resave: false,
+    saveUninitialized: false
 })))
 app.use(passport.initialize())
 app.use(passport.session())
@@ -48,18 +48,23 @@ app.use('/login', login_routes)
 app.use('/posts', post_routes)
 app.use('/users', user_routes)
 
+app.get('/logout', function(req, res) {
+    req.logout()
+    res.redirect('/')
+})
+
 // ---------- TEMP ROUTING ---------- //
 
 app.get('/', function(req, res) {
-  res.render('temp_static_pages/landingtest')
+    res.render('temp_static_pages/landingtest')
 })
 
 app.get('/about', function(req, res) {
-  res.render('temp_static_pages/about')
+    res.render('temp_static_pages/about')
 })
 
 app.get('/contact', function(req, res) {
-  res.render('temp_static_pages/contact')
+    res.render('temp_static_pages/contact')
 })
 
 app.get('/post', function(req, res) {
@@ -69,11 +74,11 @@ app.get('/post', function(req, res) {
 // Admin routes
 
 app.get('/admin', function(req, res) {
-  res.render('temp_static_pages/admin')
+    res.render('temp_static_pages/admin')
 })
 
 // ---------- TEMP ROUTING ---------- //
 
 app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
+    console.log('Node app is running on port', app.get('port'));
 })

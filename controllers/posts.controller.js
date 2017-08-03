@@ -22,7 +22,6 @@ module.exports = {
   },
 
   postsAddOne: function(req, res) {
-    console.log('poo')
     var newPost = {
       post_title: req.body.post_title,
       main_image: req.body.main_image,
