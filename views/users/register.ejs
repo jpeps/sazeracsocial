@@ -1,5 +1,36 @@
 <% include ../partials/header %>
 
-  <h1>Register Page</h1>
+<h1>Register Page</h1>
+
+<div class="container">
+  <% if (errors) { %>
+    <% errors.forEach((err) => { %>
+      <div class="alert alert-danger">
+        <%= err.msg %>
+      </div>
+    <% }) %>
+  <% } %>
+</div>
+
+<div class="container">
+  <form action="/register" method="POST">
+    <div class="form-group">
+      <input class="form-control" name="username" type="text" placeholder="Username"></input>
+    </div>
+    <div class="form-group">
+      <input class="form-control" name="email" type="text" placeholder="Email Address"></input>
+    </div>
+    <div class="form-group">
+      <input class="form-control" name="password" type="password" placeholder="Password"></input>
+    </div>
+    <div class="form-group">
+      <input class="form-control" name="password_confirm" type="password" placeholder="Re-enter Password"></input>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Register</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+  </form>
+</div>
 
 <% include ../partials/footer %>

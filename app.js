@@ -6,7 +6,8 @@ var express               = require('express'),
     passport              = require('passport'),
     localStrategy         = require('passport-local'),
     passportLocalMongoose = require('passport-local-mongoose'),
-    bodyParser            = require('body-parser')
+    bodyParser            = require('body-parser'),
+    expressValidator      = require('express-validator')
 
 app.set('port', (process.env.PORT || 3000))
 
@@ -20,6 +21,7 @@ app.use('/fa', express.static(__dirname + '/node_modules/font-awesome'))
 // Express Configs
 app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(expressValidator())
 
 // ------------- TEMP SHIT ------------- //
 var User = require('./models/user.model')
@@ -36,6 +38,11 @@ app.use(passport.session())
 passport.use(new localStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
+
+app.use(function (req, res, next) {
+  res.locals.errors = null
+  next()
+})
 
 // Routes
 var register_routes = require('./routes/register.routes')

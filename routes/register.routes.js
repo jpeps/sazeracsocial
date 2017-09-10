@@ -8,7 +8,7 @@ var usersController = require('../controllers/users.controller.js')
 var globalMiddleware = require('../middleware')
 var authMiddleware   = require('../middleware/authMiddleware')
 
-// POST ROUTES
+// POST ROUTES ( /register )
 router
   .route('/')
     .get(usersController.userRegister)
