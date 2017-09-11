@@ -41,6 +41,7 @@ passport.deserializeUser(User.deserializeUser())
 
 app.use(function (req, res, next) {
   res.locals.errors = null
+  res.locals.currentUser = req.user
   next()
 })
 
@@ -49,11 +50,13 @@ var register_routes = require('./routes/register.routes')
 var login_routes = require('./routes/login.routes')
 var post_routes = require('./routes/posts.routes')
 var user_routes = require('./routes/users.routes')
+var secret_routes = require('./routes/superSecret.routes')
 
 app.use('/register', register_routes)
 app.use('/login', login_routes)
 app.use('/posts', post_routes)
 app.use('/users', user_routes)
+app.use('/secret', secret_routes)
 
 app.get('/logout', function(req, res) {
     req.logout()

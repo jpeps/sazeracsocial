@@ -43,11 +43,16 @@ module.exports = {
     },
 
     // ---------- LOGIN/LOGOUT ---------- //
-    userLoginAuth: function(req, res) {
+    loginUser: function(req, res) {
         passport.authenticate('local', {
           successRedirect: '/posts',
           failureRedirect: '/'
         }) (req, res, function() {})
+    },
+
+    logoutUser: function(req, res) {
+        req.logout()
+        res.redirect('/')
     },
 
     // ---------- RENDERS ---------- //

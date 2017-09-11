@@ -12,6 +12,6 @@ var authMiddleware   = require('../middleware/authMiddleware')
 router
   .route('/')
     .get(usersController.userLogin)
-    .post(authMiddleware.isLoggedIn, usersController.userLoginAuth)
+    .post(usersController.loginUser)
 
 module.exports = router

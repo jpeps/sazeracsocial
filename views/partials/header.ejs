@@ -21,9 +21,6 @@
   <!-- Main.css -->
   <link href="/stylesheets/main.css" rel="stylesheet" type="text/css">
 
-  <!-- Theme CSS -->
-  <link href="stylesheets/css/clean-blog.min.css" rel="stylesheet">
-
   <!-- Custom Fonts -->
   <link href="/fa/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -36,7 +33,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-
 </head>
 
 <body>
@@ -59,16 +55,20 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+              <% if(!currentUser) { %>
+                <li><a href="#" data-toggle="modal" data-target="#userLoginModal">Login</a></li>
+                <li><a href="/register">Register</a></li>
+              <% } else { %>
+                <li><a href="#">Signed in as <%= currentUser.username %></a></li>
+                <li><a href="/logout">Logout</a></li>
+              <% } %>
                 <li>
                     <a href="/">Home</a>
                 </li>
                 <li>
                     <a href="/posts">Articles</a>
                 </li>
-                <li>
-                    <a href="#" data-toggle="modal" data-target="#userLoginModal">Login</a>/
-                    <a href="/register">Register</a>
-                </li>
+
                 <li>
                     <a href="/about">About</a>
                 </li>
@@ -81,5 +81,3 @@
     </div>
     <!-- /.container -->
 </nav>
-<br>
-<br>
