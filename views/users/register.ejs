@@ -13,24 +13,28 @@
 </div>
 
 <div class="container">
-  <form action="/register" method="POST">
-    <div class="form-group">
-      <input class="form-control" name="username" type="text" placeholder="Username"></input>
+
+  <form class="form-signin" action="/register" method="POST">
+    
+    <h2 class="form-signin-heading">Please sign in</h2>
+    
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    
+    <label for="inputPassword" class="sr-only">Re-enter Password</label>
+    <input name="password_confirm" type="password" id="inputPasswordReEnter" class="form-control" placeholder="Re-enter Password" required>
+    
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
     </div>
-    <div class="form-group">
-      <input class="form-control" name="email" type="text" placeholder="Email Address"></input>
-    </div>
-    <div class="form-group">
-      <input class="form-control" name="password" type="password" placeholder="Password"></input>
-    </div>
-    <div class="form-group">
-      <input class="form-control" name="password_confirm" type="password" placeholder="Re-enter Password"></input>
-    </div>
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary">Register</button>
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    </div>
+    <button type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
   </form>
+
 </div>
 
 <% include ../partials/footer %>
