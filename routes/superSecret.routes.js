@@ -5,11 +5,12 @@ var router  = express.Router()
 var secretsController = require('../controllers/secrets.controller.js')
 
 // MIDDLEWARE
+var globalMiddleware = require('../middleware')
 var authMiddleware   = require('../middleware/authMiddleware')
 
 // ROUTES ( /secret )
 router
   .route('/')
-    .get(authMiddleware.isLoggedIn, secretsController.renderSecretPage)
+    .get(globalMiddleware.test, authMiddleware.isLoggedIn, secretsController.renderSecretPage)
 
 module.exports = router
