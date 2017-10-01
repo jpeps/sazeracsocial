@@ -10,6 +10,8 @@ module.exports = {
       if (err) {
         console.log(err)
       } else {
+        console.log(req.user)
+        console.log(req.isAuthenticated())
         res.render('posts/index', { posts: allPosts })
       }
     })

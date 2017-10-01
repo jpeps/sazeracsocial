@@ -3,6 +3,7 @@ require('./data/db.js')
 var express               = require('express'),
     app                   = express(),
     expressSession        = require('express-session'),
+    MongoDBStore          = require('connect-mongodb-session')(expressSession),
     passport              = require('passport'),
     localStrategy         = require('passport-local'),
     passportLocalMongoose = require('passport-local-mongoose'),
@@ -27,18 +28,33 @@ app.use(expressValidator())
 var User = require('./models/user.model')
 // ------------- TEMP SHIT ------------- //
 
+// Session Stores
+var store = new MongoDBStore({
+    uri: 'mongodb://localhost/sazeracsocial',
+    collection: 'sessions'
+})
+
+store.on('error', function(error) {
+    assert.ifError(error)
+    assert.ok(false)
+})
+
 //Passport Config
 app.use(expressSession(({
     secret: 'boobookittyduck',
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },  // 1 week
+    store: store,
     resave: false,
     saveUninitialized: false
 })))
+
 app.use(passport.initialize())
 app.use(passport.session())
 passport.use(new localStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
+// Middleware vars
 app.use(function (req, res, next) {
   res.locals.errors = null
   res.locals.currentUser = req.user
