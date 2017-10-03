@@ -5,7 +5,6 @@ var router  = express.Router()
 var usersController = require('../controllers/users.controller.js')
 
 // MIDDLEWARE
-var globalMiddleware = require('../middleware')
 var authMiddleware   = require('../middleware/authMiddleware')
 
 // POST ROUTES ( /login )

@@ -50,6 +50,7 @@ app.use(expressSession(({
 
 app.use(passport.initialize())
 app.use(passport.session())
+
 passport.use(new localStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
@@ -62,17 +63,15 @@ app.use(function (req, res, next) {
 })
 
 // Routes
-var register_routes = require('./routes/register.routes')
-var login_routes    = require('./routes/login.routes')
-var post_routes     = require('./routes/posts.routes')
-var user_routes     = require('./routes/users.routes')
-var secret_routes   = require('./routes/superSecret.routes')
+var registerRoutes = require('./routes/register.routes')
+var loginRoutes    = require('./routes/login.routes')
+var postRoutes     = require('./routes/posts.routes')
+var userRoutes     = require('./routes/users.routes')
 
-app.use('/register', register_routes)
-app.use('/login',    login_routes)
-app.use('/posts',    post_routes)
-app.use('/users',    user_routes)
-app.use('/secret',   secret_routes)
+app.use('/register', registerRoutes)
+app.use('/login',    loginRoutes)
+app.use('/posts',    postRoutes)
+app.use('/users',    userRoutes)
 
 app.get('/logout', function(req, res) {
     req.logout()

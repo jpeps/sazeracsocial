@@ -5,13 +5,12 @@ var router  = express.Router()
 var postsController = require('../controllers/posts.controller.js')
 
 // MIDDLEWARE
-var globalMiddleware = require('../middleware')
-var authMiddleware   = require('../middleware/authMiddleware')
+var authMiddleware = require('../middleware/authMiddleware')
 
-// POST ROUTES ( /users )
+// POST ROUTES ( /users ) -- Clearly not done
 router
   .route('/')
-    .get(globalMiddleware.test, postsController.postsGetAll)
+    .get(postsController.postsGetAll)
     .post(authMiddleware.isLoggedIn, postsController.postsAddOne)
 
 module.exports = router

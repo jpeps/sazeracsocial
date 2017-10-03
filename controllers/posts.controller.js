@@ -10,17 +10,11 @@ module.exports = {
       if (err) {
         console.log(err)
       } else {
-        console.log(req.user)
-        console.log(req.isAuthenticated())
         res.render('posts/index', { posts: allPosts })
       }
     })
 
     console.log('post get all')
-  },
-
-  postsRenderNew: function(req, res) {
-    res.render('posts/new')
   },
 
   postsAddOne: function(req, res) {
@@ -65,6 +59,11 @@ module.exports = {
   postsDeleteById: function(req, res) {
     res.send('post delete by id')
     console.log('post delete by id')
+  },
+  
+  // ---------- RENDERS ---------- //
+  postsRenderNew: function(req, res) {
+    res.render('posts/new')
   }
 
 }

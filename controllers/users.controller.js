@@ -60,15 +60,7 @@ module.exports = {
         res.render('users/register')
     },
 
-    userRegisterModal: function(req, res) {
-        res.render('users/register-modal')
-    },
-
     userLogin: function(req, res) {
         res.render('users/login')
-    },
-
-    userLoginModal: function(req, res) {
-        res.render('users/login-modal')
     }
 }

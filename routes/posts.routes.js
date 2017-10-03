@@ -5,18 +5,17 @@ var router  = express.Router()
 var postsController = require('../controllers/posts.controller.js')
 
 // MIDDLEWARE
-var globalMiddleware = require('../middleware')
-var authMiddleware   = require('../middleware/authMiddleware')
+var authMiddleware = require('../middleware/authMiddleware')
 
 // POST ROUTES ( /posts )
 router
   .route('/')
-    .get(globalMiddleware.test, postsController.postsGetAll)
+    .get(postsController.postsGetAll)
     .post(authMiddleware.isLoggedIn, postsController.postsAddOne)
 
 router
   .route('/new')
-    .get(authMiddleware.isLoggedIn, postsController.postsRenderNew)
+    .get(authMiddleware.authEditor, postsController.postsRenderNew)
 
 router
   .route('/:postId')
